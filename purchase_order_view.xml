@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+
+<record id="view_purchase_order_line_wht" model="ir.ui.view">
+        <field name="name">purchase.order.line.wht</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']"
+                   position="after">
+
+                <field name="sdwht"/>
+                <field name="amtwht"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

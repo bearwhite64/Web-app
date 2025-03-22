@@ -1,0 +1,84 @@
+<odoo>
+
+    <!-- Form View สำหรับ ReportPerformance -->
+    <record id="view_report_performance_form" model="ir.ui.view">
+        <field name="name">report.performance.form</field>
+        <field name="model">report.performance</field>
+        <field name="arch" type="xml">
+            <form string="Report Performance">
+                <sheet>
+                    <group>
+                        <field name="product_sub"/>
+                        <field name="date"/>
+                        <field name="manager"/>
+                        <field name="supervisor"/>
+                        <field name="employee_id"/>
+                    </group>
+                    <!-- ใช้ div เพื่อจัดเรียงปุ่มให้ทางซ้าย พร้อมเว้นระยะจากขอบ -->
+                    <div class="text-left" style="display: flex; margin-left: 20px; gap: 10px;">
+                        <!-- ปุ่มค้นหาตรงซ้าย -->
+                        <button name="action_search" type="object" string="ค้นหา" class="btn-primary" style="width: 150px; padding: 10px 20px;"/>
+                        <!-- ปุ่มยกเลิกข้างๆ ปุ่มค้นหา -->
+                        <button name="action_cancel" type="object" string="ยกเลิก" class="btn-danger" style="width: 150px; padding: 10px 20px;"/>
+                    </div>
+                    <notebook>
+                        <!-- Tab สำหรับ head_per -->
+                        <page string="Due to be/Collects">
+                            <field name="head_per">
+                                <tree editable="bottom">
+                                    <field name="collector"/>
+                                    <field name="ac_total"/>
+                                    <field name="ac_due"/>
+                                    <field name="amt_due"/>
+                                    <field name="amt_overdue"/>
+                                    <field name="amt_total"/>
+                                    <field name="ac_collect"/>
+                                    <field name="amt_collect_due"/>
+                                    <field name="amt_collect_overdue"/>
+                                    <field name="amt_collect_advance"/>
+                                </tree>
+                            </field>
+                        </page>
+
+<!--                         Tab สำหรับ head_per2-->
+<!--                        <page string="Collects">-->
+<!--                            <field name="head_per2">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="ac_collect"/>-->
+<!--                                    <field name="amt_collect_due"/>-->
+<!--                                    <field name="amt_collect_overdue"/>-->
+<!--                                    <field name="amt_collect_advance"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View สำหรับ ReportPerformance -->
+    <record id="view_report_performance_tree" model="ir.ui.view">
+        <field name="name">report.performance.tree</field>
+        <field name="model">report.performance</field>
+        <field name="arch" type="xml">
+            <tree string="Report Performance Data">
+                <field name="product_sub"/>
+                <field name="date"/>
+                <field name="manager"/>
+                <field name="supervisor"/>
+                <field name="employee_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action สำหรับเปิด ReportPerformance -->
+    <record id="action_report_performance" model="ir.actions.act_window">
+        <field name="name">Report Performance</field>
+        <field name="res_model">report.performance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sub Menu Item สำหรับ Action ที่จะเปิด Report Performance -->
+    <menuitem id="menu_report_performance_action" name="รายงาน Performance" parent="menu_report_account_action" action="action_report_performance"/>
+</odoo>

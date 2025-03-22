@@ -1,0 +1,70 @@
+<odoo>
+
+
+    <!-- กำหนด Action สำหรับโมเดล calculate.penalty -->
+    <record id="action_calculate_penalty" model="ir.actions.act_window">
+        <field name="name">คำนวณเบี้ยปรับ</field>
+        <field name="res_model">calculate.penalty</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help">ใช้สำหรับคำนวณเบี้ยปรับและค่าที่เกี่ยวข้อง</field>
+    </record>
+
+    <!-- ฟอร์มคำนวณเบี้ยปรับ -->
+    <record id="view_form_calculate_penalty" model="ir.ui.view">
+        <field name="name">calculate.penalty.form</field>
+        <field name="model">calculate.penalty</field>
+        <field name="arch" type="xml">
+            <form string="คำนวณเบี้ยปรับ">
+                <sheet>
+                    <group string="คำนวณเบี้ยปรับ">
+                        <!-- แบ่งฟอร์มเป็นสองฝั่ง -->
+                        <group>
+                            <field name="start_receiv"/>
+                            <field name="final_installment"/>
+                            <field name="unpaid"/>
+                            <field name="stall"/>
+                            <field name="totalstall"/>
+                            <field name="total_num_stall"/>
+                            <field name="first_installment"/>
+                            <field name="total_num_pay"/>
+                        </group>
+                        <group>
+                            <field name="end_receiv"/>
+                            <field name="outbalance"/>
+                            <field name="taxes_unpaid"/>
+                            <field name="taxes_stall"/>
+                            <field name="penalty" />
+                            <field name="demand_fee"/>
+                            <field name="tracking_fee"/>
+                            <field name="total_num_overdue"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- กำหนด Tree View -->
+    <record id="view_tree_calculate_penalty" model="ir.ui.view">
+        <field name="name">calculate.penalty.tree</field>
+        <field name="model">calculate.penalty</field>
+        <field name="arch" type="xml">
+            <tree string="คำนวณเบี้ยปรับ">
+                <field name="start_receiv"/>
+                <field name="end_receiv"/>
+                <field name="final_installment"/>
+                <field name="penalty"/>
+                <field name="unpaid"/>
+                <field name="totalstall"/>
+            </tree>
+        </field>
+    </record>
+        <!-- เพิ่มเมนูสำหรับคำนวณเบี้ยปรับ -->
+    <menuitem id="menu_calculate_penalty"
+              name="คำนวณเบี้ยปรับ"
+              parent="menu_tracking_results"
+              action="action_calculate_penalty"
+              sequence="1"/>
+
+</odoo>

@@ -1,0 +1,67 @@
+<odoo>
+    <!-- ฟอร์มที่มีการ inherit จาก view_partner_form -->
+    <record id="view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+<!--            <xpath expr="//field[@name='name']" position="before">-->
+<!--                <field name="title"/>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='title']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+
+            <!-- เพิ่มฟิลด์ name_eng ต่อจาก display_name -->
+            <xpath expr="//field[@name='parent_id']" position="before">
+                <field name="name_eng"/>
+            </xpath>
+
+            <!-- เปลี่ยนชื่อฟิลด์ vat เป็น 'บัตรประชาชน' -->
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="string">บัตรประชาชน</attribute>
+                <attribute name="placeholder">เลขบัตรประชาชน</attribute>
+            </xpath>
+
+            <!-- เพิ่มฟิลด์ gender_part ต่อจาก vat -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="gender_part"/>
+                <field name="birth_part"/>
+                <field name="age_part"/>
+                <field name="ethnicity"/>
+                <field name="nationality"/>
+            </xpath>
+
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="placeholder">จังหวัด</attribute>
+            </xpath>
+
+            <!-- เปลี่ยน placeholder ของฟิลด์ country_id (ประเทศ) -->
+            <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="placeholder">ประเทศ</attribute>
+            </xpath>
+
+                        <!-- เพิ่มฟิลด์ occupation ก่อนฟิลด์ function -->
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="occupation"/>
+            </xpath>
+
+                        <!-- เพิ่มฟิลด์ name_eng ต่อจาก display_name -->
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="salary_part"/>
+            </xpath>
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="string">เบอร์ที่ทำงาน</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="string">เบอร์มือถือ</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

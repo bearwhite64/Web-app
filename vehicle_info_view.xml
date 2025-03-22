@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action เพื่อเปิด Tree View -->
+    <record id="action_vehicle_info" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">vehicle.info</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="view_vehicle_info_tree"/>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_create">-->
+<!--                Create your first vehicle record-->
+<!--            </p>-->
+<!--        </field>-->
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_vehicle_info_tree" model="ir.ui.view">
+        <field name="name">vehicle.info.tree</field>
+        <field name="model">vehicle.info</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicles">
+                <field name="store_name"/>
+                <field name="category"/>
+                <field name="product"/>
+                <field name="product_code"/>
+                <field name="brand"/>
+                <field name="year"/>
+                <field name="size"/>
+                <field name="color"/>
+                <field name="location"/>
+                <field name="user_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_vehicle_info_form" model="ir.ui.view">
+        <field name="name">vehicle.info.form</field>
+        <field name="model">vehicle.info</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <group>
+                        <field name="store_name"/>
+                        <field name="category"/>
+                        <field name="product"/>
+                        <field name="product_code"/>
+                        <field name="brand"/>
+                        <field name="engine_no"/>
+                        <field name="chassis_no"/>
+                        <field name="year"/>
+                        <field name="size"/>
+                        <field name="color"/>
+                        <field name="sale_date"/>
+                        <field name="warranty_date"/>
+                        <field name="location"/>
+                        <field name="user_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_vehicle_info" name="ข้อมูลรถ" parent="account.menu_finance" action="action_vehicle_info" sequence="16"/>
+</odoo>

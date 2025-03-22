@@ -1,0 +1,86 @@
+<odoo>
+
+    <!-- Form View สำหรับ report.account -->
+    <record id="view_report_contract_form" model="ir.ui.view">
+        <field name="name">report.contract.form</field>
+        <field name="model">report.account</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="manager"/>
+                        <field name="supervisor"/>
+                        <field name="employee_id"/>
+                    </group>
+                    <div class="text-left" style="display: flex; margin-left: 20px; gap: 10px;" >
+                        <button name="action_search" type="object" class="btn-primary" string="ค้นหา"/>
+                    </div>
+                    <notebook>
+                        <!-- Tab สำหรับ head_ids -->
+                        <page string="ยอดที่มีให้เก็บ/ยอดที่เก็บได้">
+                            <field name="head_ids">
+                                <tree editable="bottom">
+                                    <field name="list_customer"/>
+                                    <field name="no_of_cases"/>
+                                    <field name="amount_due"/>
+                                    <field name="remain_installments"/>
+                                    <field name="total_collect"/>
+                                    <field name="remain_balance"/>
+                                    <field name="no_collected"/>
+                                    <field name="receive_advance"/>
+                                    <field name="remains_installments"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <!-- Tab สำหรับ head_ids2 -->
+<!--                        <page string="ยอดที่เก็บได้">-->
+<!--                            <field name="head_ids2">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="no_collected"/>-->
+<!--                                    <field name="receive_advance"/>-->
+<!--                                    <field name="remains_installments"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View สำหรับ report.account -->
+    <record id="view_report_contract_tree" model="ir.ui.view">
+        <field name="name">report.contract.tree</field>
+        <field name="model">report.account</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="manager"/>
+                <field name="supervisor"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View for ReportContract -->
+    <record id="view_report_contract_tree" model="ir.ui.view">
+        <field name="name">report.contract.tree</field>
+        <field name="model">report.account</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="manager"/>
+                <field name="supervisor"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for ReportContract -->
+    <record id="action_report_account" model="ir.actions.act_window">
+        <field name="name">Report Contracts</field>
+        <field name="res_model">report.account</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Linking Menu with Action -->
+    <menuitem id="menu_report_account_action" name="รายงานจัดชั้นหนี้แบบสรุป" parent="account.menu_finance" action="action_report_account" />
+    <menuitem id="menu_report_account" name="รายงานจัดชั้นหนี้แบบสรุป" parent="menu_report_account_action" action="action_report_account" />
+</odoo>

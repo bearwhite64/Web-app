@@ -1,0 +1,50 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_contact_history_tree" model="ir.ui.view">
+        <field name="name">contact.history.tree</field>
+        <field name="model">contact.history</field>
+        <field name="arch" type="xml">
+            <tree string="ประวัติการติดต่อ">
+                <field name="date_info"/>
+                <field name="created_by"/>
+                <field name="record_code"/>
+                <field name="follow_up_code"/>
+                <field name="follow_up_result"/>
+                <field name="contact_person"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_contact_history_form" model="ir.ui.view">
+        <field name="name">contact.history.form</field>
+        <field name="model">contact.history</field>
+        <field name="arch" type="xml">
+            <form string="ประวัติการติดต่อ">
+                <sheet>
+                    <group>
+                        <field name="date_info"/>
+                        <field name="created_by"/>
+                        <field name="record_code"/>
+                        <field name="follow_up_code"/>
+                    </group>
+                    <group>
+                        <field name="follow_up_result"/>
+                        <field name="contact_person"/>
+                        <field name="special_status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_contact_history" model="ir.actions.act_window">
+        <field name="name">ประวัติการติดต่อ</field>
+        <field name="res_model">contact.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_contact_history" name="ประวัติการติดต่อ" parent="account.menu_finance" action="action_contact_history" sequence="16"/>
+</odoo>

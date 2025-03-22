@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_branch_form" model="ir.ui.view">
+            <field name="name">branch.form</field>
+            <field name="model">branch</field>
+            <field name="arch" type="xml">
+                <form string="สาขา">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="address"/>
+                            <field name="tel"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_branch_tree" model="ir.ui.view">
+            <field name="name">branch.tree</field>
+            <field name="model">branch</field>
+            <field name="arch" type="xml">
+                <tree string="สาขา">
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="tel"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_branch" model="ir.actions.act_window">
+            <field name="name">สาขา</field>
+            <field name="res_model">branch</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu item -->
+        <record id="menu_branch" model="ir.ui.menu">
+            <field name="name">สาขา</field>
+            <field name="parent_id" ref="hr.menu_hr_root"/>
+            <field name="action" ref="action_branch"/>
+        </record>
+    </data>
+</odoo>

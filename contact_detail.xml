@@ -1,0 +1,78 @@
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_detail_contactaddon_tree" model="ir.ui.view">
+        <field name="name">detail.contact.addon.tree</field>
+        <field name="model">detail.contact.addon</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="no_contact"/>
+                <field name="cus_no"/>
+                <field name="name_borrower"/>
+                <field name="car_licenseplate"/>
+                <field name="carbrand"/>
+                <field name="installment_month"/>
+                <field name="term_payment"/>
+                <field name="total_payment"/>
+                <field name="amount_payment"/>
+                <field name="contract_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_detail_contactaddon_form" model="ir.ui.view">
+        <field name="name">detail.contact.addon.form</field>
+        <field name="model">detail.contact.addon</field>
+        <field name="arch" type="xml">
+            <form string="Detail Contact Addon">
+                <sheet>
+                    <group>
+                        <group name="basic_information">
+                            <field name="no_contact"/>
+                            <field name="cus_no"/>
+                            <field name="name_borrower"/>
+                            <field name="citizen_code"/>
+                            <field name="mobile_borrower"/>
+                            <field name="name_guarantor"/>
+                            <field name="car_licenseplate"/>
+                            <field name="carbrand"/>
+                        </group>
+                        <group name="payment_details">
+                            <field name="installment_month"/>
+                            <field name="term_payment"/>
+                            <field name="total_payment"/>
+                            <field name="amount_payment"/>
+                            <field name="amountdate_payment"/>
+                            <field name="latest_payment"/>
+                            <field name="cutday"/>
+                            <field name="installment_latest"/>
+                            <field name="contract_status"/>
+                            <field name="name_admin"/>
+                            <field name="bukket"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+        <!-- Define Action for the Menu Item -->
+    <record id="action_detail_addon" model="ir.actions.act_window">
+        <field name="name">Detail Contact Addon</field>
+        <field name="res_model">detail.contact.addon</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Add the action to the menu -->
+<!--    <menuitem-->
+<!--            id="menu_action_detail_addon_action"-->
+<!--            name="Detail Contact Addon" parent="account.menu_finance"-->
+<!--            action="action_detail_addon"-->
+<!--            sequence="1"/>-->
+
+    <menuitem id="menu_detail_contactaddon" name="รายละเอียดสัญญา" parent="account.menu_finance"
+              action="action_detail_addon" sequence="1000"/>
+</odoo>

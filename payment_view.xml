@@ -1,0 +1,116 @@
+<odoo>
+
+    <!--  tree ของ payment_receipt_headers  -->
+    <record id="view_payments_receipt_headers_tree" model="ir.ui.view">
+        <field name="name">payments.receipt.headers.tree</field>
+        <field name="model">payments.receipt.headers</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="receipt_no"/>
+                <field name="receipt_contract_code"/>
+                <field name="receipt_loan_type"/>
+                <field name="receipt_product_code"/>
+                <field name="receipt_service_code"/>
+                <field name="receipt_vat_rate"/>
+                <field name="receipt_vat_amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_payments_receipt_form" model="ir.ui.view">
+        <field name="name">payments.receipt.headers.form</field>
+        <field name="model">payments.receipt.headers</field>
+        <field name="arch" type="xml">
+            <form string="Receipt Details">
+                <sheet>
+                    <!-- Section: Head Information -->
+                    <group string="Receipt Information">
+                        <group>
+                            <field name="receipt_no"/>
+                            <field name="receipt_contract_id"/>
+                            <field name="receipt_contract_code"/>
+                            <field name="receipt_loan_type"/>
+                        </group>
+                        <group>
+                            <field name="receipt_date"/>
+                            <field name="receipt_vat_rate"/>
+                            <field name="receipt_vat_amount"/>
+                            <field name="receipt_amount"/>
+                        </group>
+                        <group>
+                            <field name="receipt_cust_name1"/>
+                            <field name="receipt_cust_address"/>
+                            <field name="receipt_engine_no"/>
+                        </group>
+                    </group>
+
+                    <!-- Section: Line Details -->
+                    <notebook>
+                        <page string="Receipt Lines">
+                            <field name="line_id" widget="one2many_list">
+                                <tree string="Receipt Line Details" editable="bottom">
+                                    <field name="prh_id"/>
+                                    <field name="prh_trans_code"/>
+                                    <field name="prh_period"/>
+                                    <field name="prh_amount"/>
+                                    <field name="prh_vat_rate"/>
+                                    <field name="prh_vat_amount"/>
+                                    <field name="prh_total_amount"/>
+                                    <field name="prh_tax_amount"/>
+                                    <field name="prh_create_date"/>
+                                    <field name="prh_create_by"/>
+                                    <field name="prh_suspense_flag"/>
+                                    <button name="action_open_account_move_wizard"
+                                            string="Open Account Move"
+                                            type="object"
+                                            class="oe_highlight"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  tree ของ payment_receipt_details  -->
+    <record id="view_payments_receipt_details_tree" model="ir.ui.view">
+        <field name="name">payments.receipt.details.tree</field>
+        <field name="model">payments.receipt.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="prh_id"/>
+                <field name="prh_trans_code"/>
+                <field name="prh_receipt_no"/>
+                <field name="prh_period"/>
+                <field name="prh_vat_rate"/>
+                <field name="prh_amount"/>
+                <field name="prh_total_amount"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--  action ของ payment_receipt_headers  -->
+    <record id="action_payments_receipt_headers" model="ir.actions.act_window">
+        <field name="name">Payments Receipts</field>
+        <field name="res_model">payments.receipt.headers</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--  action ของ payment_receipt_headers  -->
+    <record id="action_payments_receipt_details" model="ir.actions.act_window">
+        <field name="name">Receipt Details</field>
+        <field name="res_model">payments.receipt.details</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_payments_receipts" name="Payments Receipts" parent="menu_contract_details"
+              action="action_payments_receipt_headers" sequence="4"/>
+    <menuitem id="menu_payments_receipt_details" name="Receipt Details" parent="menu_contract_details"
+              action="action_payments_receipt_details" sequence="5"/>
+</odoo>
+
+
+
+
+

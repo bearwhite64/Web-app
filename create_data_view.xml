@@ -1,0 +1,96 @@
+<odoo>
+    <record id="view_create_data_tree" model="ir.ui.view">
+        <field name="name">create.data.tree</field>
+        <field name="model">create.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="external_agency"/>
+                <field name="date_from"/>
+<!--                <field name="date_to"/>-->
+                <field name="no_assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_create_data_form" model="ir.ui.view">
+        <field name="name">create.data.form</field>
+        <field name="model">create.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="get_data" string="ดึงข้อมูล" type="object" default_focus="1"
+                            class="oe_highlight" data-hotkey="q"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="external_agency"/>
+                            <field name="date_from" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_to'}"/>
+                            <field name="date_to" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_from'}"/>
+                        </group>
+                        <group>
+                            <field name="no_assign"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <field name="line_id">
+                                <tree editable="bottom">
+                                    <field name="no_assign"/>
+                                    <field name="external_agency"/>
+                                    <field name="date_assign"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_create_data_line_tree" model="ir.ui.view">
+        <field name="name">create.data.line.tree</field>
+        <field name="model">create.data.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="no_assign"/>
+                <field name="external_agency"/>
+                <field name="date_assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_create_data_line_form" model="ir.ui.view">
+        <field name="name">create.data.line.form</field>
+        <field name="model">create.data.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="no_assign"/>
+                        <field name="external_agency"/>
+                        <field name="date_assign"/>
+                        <field name="head_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_data" model="ir.actions.act_window">
+        <field name="name">Create Data</field>
+        <field name="res_model">create.data</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Create Data Records</field>
+    </record>
+
+    <record id="action_create_data_line" model="ir.actions.act_window">
+        <field name="name">Create Data Line</field>
+        <field name="res_model">create.data.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Create Data Line Records</field>
+    </record>
+
+    <menuitem id="menu_create_data" name="สร้างไฟล์ข้อมูล" parent="menu_transfer_work"
+              action="action_create_data" sequence="6"/>
+</odoo>

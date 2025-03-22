@@ -1,0 +1,131 @@
+<odoo>
+
+    <!--  tree ของ contract_details  -->
+    <record id="view_contract_details_tree" model="ir.ui.view">
+        <field name="name">contract.details.tree</field>
+        <field name="model">contract.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="contract_id" string="เลขที่สัญญา"/>
+                <field name="contract_code"/>
+                <field name="contract_customer_no"/>
+                <field name="contract_customer_id"/>
+                <field name="contract_loan_type"/>
+                <field name="contract_loan_product_type"/>
+                <field name="contract_first_payment_date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_contract_installment_form" model="ir.ui.view">
+        <field name="name">contract.installment.form</field>
+        <field name="model">contract.installment</field>
+        <field name="arch" type="xml">
+            <form string="Contract Installment">
+                <sheet>
+                    <!-- Section: Head Information -->
+                    <group string="Installment Details">
+                        <group>
+                            <field name="install_id"/>
+                            <field name="install_contract_code"/>
+                            <field name="install_loan_type"/>
+                        </group>
+                        <group>
+                            <field name="install_first_due_date"/>
+                            <field name="install_next_due_date"/>
+                            <field name="install_last_paid_date"/>
+                        </group>
+                        <group>
+                            <field name="install_current_period"/>
+                            <field name="install_end_period"/>
+                            <field name="install_principal_balance"/>
+                        </group>
+                    </group>
+
+                    <!-- Section: Line Details -->
+                    <notebook>
+                        <page string="Installment Lines">
+                            <field name="line_id" widget="one2many_list">
+                                <tree string="Installment Line Details" editable="bottom">
+                                    <field name="install_detail_id"/>
+                                    <field name="install_detail_contract_code"/>
+                                    <field name="install_detail_period"/>
+                                    <field name="install_detail_due_date"/>
+                                    <field name="install_detail_principal"/>
+                                    <field name="install_detail_interest"/>
+                                    <field name="install_detail_vat"/>
+                                    <field name="install_detail_fee_amount"/>
+                                    <field name="install_detail_status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--  tree ของ contract_installment  -->
+    <record id="view_contract_installment_tree" model="ir.ui.view">
+        <field name="name">contract.installment.tree</field>
+        <field name="model">contract.installment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="install_id"/>
+                <field name="install_contract_code"/>
+                <field name="install_current_period"/>
+                <field name="install_next_period"/>
+                <field name="install_principal_balance"/>
+                <field name="install_interest_balance"/>
+                <field name="install_end_period"/>
+            </tree>
+        </field>
+    </record>
+    <!--  tree ของ contract_installment_detail -->
+    <record id="view_contract_installment_details_tree" model="ir.ui.view">
+        <field name="name">contract.installment.details.tree</field>
+        <field name="model">contract.installment.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="install_detail_id"/>
+                <field name="install_detail_insid"/>
+                <field name="install_detail_contract_code"/>
+                <field name="install_detail_last_paid_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  action ของ contract_details  -->
+    <record id="action_contract_details" model="ir.actions.act_window">
+        <field name="name">Contract Details</field>
+        <field name="res_model">contract.details</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <!--  action ของ contract_installment  -->
+    <record id="action_contract_installment" model="ir.actions.act_window">
+        <field name="name">Contract Installments</field>
+        <field name="res_model">contract.installment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--  action ของ contract_installment_details  -->
+    <record id="action_contract_installment_details" model="ir.actions.act_window">
+        <field name="name">Installment Details</field>
+        <field name="res_model">contract.installment.details</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+    <menuitem id="menu_contract_details" name="ข้อมูลสัญญาและบันทึกการติดตาม" parent="account.menu_finance"
+              action="action_contract_details" sequence="15"/>
+    <menuitem id="menu_contract_installment" name="Installments" parent="menu_contract_details"
+              action="action_contract_installment" sequence="2"/>
+    <menuitem id="menu_details" name="Contract Details" parent="menu_contract_details" action="action_contract_details"
+              sequence="1"/>
+    <menuitem id="menu_contract_installment_details" name="Installment Details" parent="menu_contract_details"
+              action="action_contract_installment_details" sequence="3"/>
+</odoo>
+
+
+
+
+

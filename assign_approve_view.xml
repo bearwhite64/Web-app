@@ -1,0 +1,126 @@
+<odoo>
+    <record id="view_assign_approve_tree" model="ir.ui.view">
+        <field name="name">assign.approve.tree</field>
+        <field name="model">assign.approve</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="external_agency"/>
+                <field name="admin"/>
+                <field name="dispatcher"/>
+                <field name="no_dispatcher"/>
+                <field name="date_assign_from"/>
+                <field name="date_assign_to"/>
+                <field name="date_end_from"/>
+                <field name="date_end_to"/>
+                <field name="approve"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_assign_approve_form" model="ir.ui.view">
+        <field name="name">assign.approve.form</field>
+        <field name="model">assign.approve</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="get_data" string="ดึงข้อมูล" type="object" default_focus="1"
+                            class="oe_highlight" data-hotkey="q"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="external_agency"/>
+                            <field name="admin"/>
+                            <field name="dispatcher"/>
+                            <field name="no_dispatcher"/>
+                        </group>
+                        <group>
+                            <field name="date_assign_from" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_assign_to'}"/>
+                            <field name="date_assign_to" widget="daterange" class="oe_inline" options="{'related_start_date': 'date_assign_from'}"/>
+                            <field name="date_end_from" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_end_to'}"/>
+                            <field name="date_end_to" widget="daterange" class="oe_inline" options="{'related_start_date': 'date_end_from'}"/>
+                            <field name="approve"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="รายละเอียดการมอบหมายงาน">
+                            <field name="line_id">
+                                <tree editable="bottom">
+                                    <field name="assign_code"/>
+                                    <field name="external_agency"/>
+                                    <field name="assign_date"/>
+                                    <field name="assign_date_count"/>
+                                    <field name="assign_date_end"/>
+                                    <field name="assigner"/>
+                                    <field name="approve"/>
+                                    <field name="record"/>
+                                    <field name="record_lastest"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_assign_work_line_tree" model="ir.ui.view">
+        <field name="name">assign.approve.line.tree</field>
+        <field name="model">assign.approve.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="assign_code"/>
+                <field name="external_agency"/>
+                <field name="assign_date"/>
+                <field name="assign_date_count"/>
+                <field name="assign_date_end"/>
+                <field name="assigner"/>
+                <field name="approve"/>
+                <field name="record"/>
+                <field name="record_lastest"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_assign_approve_line_form" model="ir.ui.view">
+        <field name="name">assign.approve.line.form</field>
+        <field name="model">assign.approve.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="assign_code"/>
+                        <field name="external_agency"/>
+                        <field name="assign_date"/>
+                        <field name="assign_date_count"/>
+                        <field name="assign_date_end"/>
+                        <field name="assigner"/>
+                        <field name="approve"/>
+                        <field name="record"/>
+                        <field name="record_lastest"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_assign_approve" model="ir.actions.act_window">
+        <field name="name">อนุมติมอบหมายงาน</field>
+        <field name="res_model">assign.approve</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Assign Work Records</field>
+    </record>
+
+    <record id="action_assign_work_line" model="ir.actions.act_window">
+        <field name="name">Assign Work Line</field>
+        <field name="res_model">assign.approve.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Assign Work Line Records</field>
+    </record>
+
+    <menuitem id="menu_assign_approve" name="การอนุมัติมอบหมายงาน" parent="menu_transfer_work"
+              action="action_assign_approve" sequence="5"/>
+</odoo>

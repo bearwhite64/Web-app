@@ -1,0 +1,89 @@
+<odoo>
+    <!-- View for Tree (List) -->
+    <record id="view_tracking_results_tree" model="ir.ui.view">
+        <field name="name">tracking.results.tree</field>
+        <field name="model">tracking.results</field>
+        <field name="arch" type="xml">
+            <tree string="ประวัติการติดตาม">
+                <field name="date_now"/>
+                <field name="name"/>
+                <field name="results_contract"/>
+                <field name="call_type"/>
+                <field name="results"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View for Form -->
+    <record id="view_tracking_results_form" model="ir.ui.view">
+        <field name="name">tracking.results.form</field>
+        <field name="model">tracking.results</field>
+        <field name="arch" type="xml">
+            <form string="Tracking Results Form">
+                <sheet>
+                    <div class="row">
+                        <!-- Group 1: Left Side -->
+                        <div class="col-6">
+                            <group>
+                                <field name="results_no"/>
+                                <field name="name"/>
+                                <field name="results_contract"/>
+                                <field name="call_type"/>
+                                <field name="results"/>
+                                <field name="status_sp"/>
+                            </group>
+                        </div>
+
+                        <!-- Group 2: Right Side -->
+                        <div class="col-6">
+                            <group>
+                                <field name="contract_type"/>
+                                <field name="phone_number"/>
+<!--                                <field name="time_hour1" readonly="1"/>-->
+<!--                                <field name="time_minute1" readonly="1"/>-->
+
+
+                                <field name="date_now" readonly="1"/>
+                                <br/>
+<!--                                <button name="action_save" string="บันทึกลงเวลา" type="object" class="btn-primary"/>-->
+                            </group>
+                        </div>
+                    </div>
+                    <!-- เพิ่มปุ่ม action_save และ action_cancel ใน header -->
+<!--                    <header>-->
+<!--                        <button name="action_save" string="บันทึก" type="object" class="btn-primary"/>-->
+<!--                    </header>-->
+                    <notebook>
+                        <page string="รายละเอียดการติดตาม">
+                            <field name="head_line" >
+                                <tree editable = 'bottom'>
+                                    <field name="num_time1"/>
+                                    <field name="date_follow"/>
+                                    <field name="status_accord"/>
+                                    <field name="time_h"/>
+                                    <field name="time_m"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open tree and form views -->
+    <record id="action_tracking_results" model="ir.actions.act_window">
+        <field name="name">Tracking Results</field>
+        <field name="res_model">tracking.results</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tracking_results_tree"/>
+    </record>
+
+    <!-- Menu Item to access the action -->
+    <menuitem id="menu_tracking_results"
+              name="ประวัติการติดตาม"
+              parent="account.menu_finance"
+              action="action_tracking_results"/>
+    <menuitem id="menu_track" name="ประวัติการติดตาม" parent="menu_tracking_results"
+      action="action_tracking_results" sequence="0"/>
+</odoo>

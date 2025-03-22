@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_word_counter_tree" model="ir.ui.view">
+        <field name="name">word.counter.tree</field>
+        <field name="model">word.counter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="thai_words"/>
+                <field name="english_words"/>
+                <field name="spaces"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_word_counter_form" model="ir.ui.view">
+        <field name="name">word.counter.form</field>
+        <field name="model">word.counter</field>
+        <field name="arch" type="xml">
+            <form string="Word Counter">
+                <group>
+                    <field name="name"/>
+                    <field name="thai_words"/>
+                    <field name="english_words"/>
+                    <field name="spaces"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_word_counter" model="ir.actions.act_window">
+        <field name="name">Word Counter</field>
+        <field name="res_model">word.counter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_word_counter_root" name="Word Counter" sequence="80"/>
+    <menuitem id="menu_word_counter" name="Word Counter" parent="menu_word_counter_root" sequence="10" action="action_word_counter"/>
+</odoo>

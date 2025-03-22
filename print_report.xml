@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+
+        <!-- Form View สำหรับ Print Report Wizard -->
+        <record id="view_print_report_wizard_form" model="ir.ui.view">
+            <field name="name">print.report.wizard.form</field>
+            <field name="model">print.report</field>
+            <field name="arch" type="xml">
+                <form string="Print Report">
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="Print Report" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action สำหรับเปิด Wizard -->
+        <record id="action_print_report_wizard" model="ir.actions.act_window">
+            <field name="name">Print Report Wizard</field>
+            <field name="res_model">print.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_print_report_wizard_form"/>
+            <field name="target">new</field> <!-- เปิดเป็น Popup (Window) -->
+        </record>
+
+        <!-- เมนูสำหรับเปิด Wizard -->
+        <menuitem id="menu_print_report_wizard" name="Print Report" parent="account.menu_finance"
+                  action="action_print_report_wizard" sequence="20"/>
+
+    </data>
+</odoo>

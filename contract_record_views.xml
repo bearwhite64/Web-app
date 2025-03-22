@@ -1,0 +1,55 @@
+<odoo>
+    <!-- Define the Tree View -->
+    <record id="view_contact_record_tree" model="ir.ui.view">
+        <field name="name">contact.record.tree</field>
+        <field name="model">contact.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code_record"/>
+                <field name="communicant"/>
+                <field name="code_trace"/>
+                <field name="type_person"/>
+                <field name="phone"/>
+                <field name="time"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define the Form View -->
+    <record id="view_contact_record_form" model="ir.ui.view">
+        <field name="name">contact.record.form</field>
+        <field name="model">contact.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="code_record"/>
+                        <field name="communicant"/>
+                        <field name="code_trace"/>
+                        <field name="type_person"/>
+                        <field name="phone"/>
+                        <field name="time"/>
+                        <field name="tracking_results"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define the Action to Display the Contact Records -->
+    <record id="action_contact_record" model="ir.actions.act_window">
+        <field name="name">Contact Records</field>
+        <field name="res_model">contact.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_contact_record_tree"/>
+    </record>
+
+
+    <!-- Define the Submenu Item for Contact Records -->
+    <menuitem id="menu_contact_record" name="Contact Records" parent="contacts.menu_contacts" action="action_contact_record" sequence="5"/>
+
+</odoo>
+
+

@@ -1,0 +1,57 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_contact_record_form" model="ir.ui.view">
+        <field name="name">contact.record.form</field>
+        <field name="model">contact.record</field>
+        <field name="arch" type="xml">
+            <form string="บันทึกการติดต่อ">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="record_code"/>
+                            <field name="contact_person"/>
+                        </group>
+                        <group>
+                            <field name="follow_up_code"/>
+                            <field name="contact_type"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="phone_number" widget="phone"/>
+                        <field name="appointment_date"/>
+                        <field name="appointment_time"/>
+                    </group>
+                    <group>
+                        <field name="follow_up_result" widget="text"/>
+                        <field name="evaluation_status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_contact_record_tree" model="ir.ui.view">
+        <field name="name">contact.record.tree</field>
+        <field name="model">contact.record</field>
+        <field name="arch" type="xml">
+            <tree string="บันทึกการติดต่อ">
+                <field name="record_code"/>
+                <field name="contact_person"/>
+                <field name="contact_type"/>
+                <field name="phone_number"/>
+                <field name="evaluation_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_contact_record" model="ir.actions.act_window">
+        <field name="name">บันทึกการติดต่อ</field>
+        <field name="res_model">contact.record</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_contact_record" name="บันทึกการติดต่อ" parent="account.menu_finance" action="action_contact_record" sequence="20"/>
+</odoo>

@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="view_account_move_new_table_inherit" model="ir.ui.view">
+            <field name="name">account.move.new.table.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- เพิ่ม page ใหม่ใน notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="ยอดที่มีให้เก็บ" name="new_account_move_page">
+                        <field name="new_line">
+                            <tree editable="bottom">
+                                <field name="principle"/>
+                                <field name="interest"/>
+                                <field name="fine"/>
+                                <field name="tracking_fee"/>
+                                <field name="outstanding_balance"/>
+                                <field name="total_collected"/>
+                                <field name="remaining_principal"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_move_new_table_inherit2" model="ir.ui.view">
+            <field name="name">account.move.new.table.inherit2</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- เพิ่ม page ใหม่ใน notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="ยอดที่เก็บได้" name="new_account_move_page">
+                        <field name="new_line2">
+                            <tree editable="bottom">
+                                <field name="period"/>
+                                <field name="date_paid"/>
+                                <field name="principle"/>
+                                <field name="interest"/>
+                                <field name="fine"/>
+                                <field name="tracking_fee"/>
+                                <field name="outstanding_balance"/>
+<!--                                <field name="total_collected"/>-->
+<!--                                <field name="remaining_principal"/>-->
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_move_new_table_inherit3" model="ir.ui.view">
+            <field name="name">account.move.new.table.inherit3</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- เพิ่ม page ใหม่ใน notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="เปรียบเทียบเป็น % ระหว่างยอดที่ต้องเก็บ กับยอดที่เก็บได้" name="new_account_move_page">
+                        <field name="new_line3">
+                            <tree editable="bottom">
+                                <field name="price_collected"/>
+                                <field name="principle"/>
+                                <field name="interest"/>
+                                <field name="fine"/>
+                                <field name="tracking_fee"/>
+<!--                                <field name="outstanding_balance"/>-->
+<!--                                <field name="total_collected"/>-->
+<!--                                <field name="remaining_principal"/>-->
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

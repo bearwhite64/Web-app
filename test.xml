@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_test_tree" model="ir.ui.view">
+        <field name="name">test.mdsoft.tree</field>
+        <field name="model">test.mdsoft</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="countrycode"/>
+                <field name="budget"/>
+                <field name="used"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_test_form" model="ir.ui.view">
+        <field name="name">test.mdsoft.form</field>
+        <field name="model">test.mdsoft</field>
+        <field name="arch" type="xml">
+            <form string="Test Form">
+                <group>
+                    <field name="customer_id"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="countrycode"/>
+                    <field name="budget"/>
+                    <field name="used"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_test" model="ir.actions.act_window">
+        <field name="name">Test</field>
+        <field name="res_model">test.mdsoft</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+
+    <menuitem id="menu_test" name="Test" parent="menu_word_counter" sequence="10" action="action_test"/>
+</odoo>

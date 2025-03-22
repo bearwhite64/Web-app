@@ -1,0 +1,132 @@
+<odoo>
+    <record id="view_transfer_work_tree" model="ir.ui.view">
+        <field name="name">transfer.work.tree</field>
+        <field name="model">transfer.work</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="loan_type"/>
+                <field name="from_officer"/>
+                <field name="to_officer"/>
+                <field name="bucket"/>
+                <field name="transfer_type"/>
+                <field name="area"/>
+                <field name="approve_result"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_transfer_work_form" model="ir.ui.view">
+        <field name="name">transfer.work.form</field>
+        <field name="model">transfer.work</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="get_data" string="ดึงข้อมูล" type="object" default_focus="1"
+                            class="oe_highlight" data-hotkey="q"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_from" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_to'}"/>
+                            <field name="loan_type"/>
+                            <field name="from_officer"/>
+                            <field name="to_officer"/>
+                            <field name="approve_result"/>
+                        </group>
+                        <group>
+                            <field name="date_to" widget="daterange" class="oe_inline" options="{'related_end_date': 'date_from'}"/>
+                            <field name="bucket"/>
+                            <field name="transfer_type"/>
+                            <field name="area"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Transfer Lines">
+                            <field name="line_id">
+                                <tree editable="bottom">
+                                    <field name="transfer_code"/>
+                                    <field name="transfer_date"/>
+                                    <field name="transferor"/>
+                                    <field name="type_transfer"/>
+                                    <field name="tracking_office"/>
+                                    <field name="transfer_reason"/>
+                                    <field name="approve_result"/>
+                                    <field name="approve_note"/>
+                                    <field name="approver"/>
+                                    <field name="date_approve"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_transfer_work_line_tree" model="ir.ui.view">
+        <field name="name">transfer.work.line.tree</field>
+        <field name="model">transfer.work.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="transfer_code"/>
+                <field name="transfer_date"/>
+                <field name="transferor"/>
+                <field name="type_transfer"/>
+                <field name="tracking_office"/>
+                <field name="transfer_reason"/>
+                <field name="approve_result"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_transfer_work_line_form" model="ir.ui.view">
+        <field name="name">transfer.work.line.form</field>
+        <field name="model">transfer.work.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="transfer_code"/>
+                        <field name="transfer_date"/>
+                        <field name="transferor"/>
+                        <field name="type_transfer"/>
+                        <field name="tracking_office"/>
+                        <field name="transfer_reason"/>
+                        <field name="approve_result"/>
+                        <field name="approve_note"/>
+                        <field name="approver"/>
+                        <field name="date_approve"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transfer_work" model="ir.actions.act_window">
+        <field name="name">Transfer Work</field>
+        <field name="res_model">transfer.work</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Transfer Work Records</field>
+    </record>
+
+    <record id="action_transfer_work_line" model="ir.actions.act_window">
+        <field name="name">Transfer Work Line</field>
+        <field name="res_model">transfer.work.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Manage Transfer Work Line Records</field>
+    </record>
+
+
+    <menuitem id="menu_transfer_work" name="การโอนย้าย/มอบหมายงาน" parent="account.menu_finance" sequence="16"/>
+    <menuitem id="menu_transfer_work_1" name="การโอนย้ายงาน" parent="menu_transfer_work"
+              action="action_transfer_work" sequence="1"/>
+<!--    <menuitem id="menu_details" name="Contract Details" parent="menu_transfer_work" action="action_contract_details"-->
+<!--              sequence="1"/>-->
+<!--    <menuitem id="menu_contract_installment_details" name="Installment Details" parent="menu_transfer_work"-->
+<!--              action="action_contract_installment_details" sequence="3"/>-->
+</odoo>
