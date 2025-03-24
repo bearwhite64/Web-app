@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_green_factory_tree" model="ir.ui.view">
+        <field name="name">green.factory.tree</field>
+        <field name="model">green.factory</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_project"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="budget"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_form_green_factory" model="ir.ui.view">
+        <field name="name">green.factory.form</field>
+        <field name="model">green.factory</field>
+        <field name="arch" type="xml">
+            <form string="Green_factory">
+                <header>
+                    <button name="action_open_gantt_view" type="object" string="Open Gantt View" class="btn-primary"/>
+                </header>
+            <!-- กลุ่มข้อมูลทั่วไป -->
+                <group string="ข้อมูลทั่วไป">
+                    <group >
+                        <field name="name_project" string="ชื่อโครงการ"/>
+                        <field name="name_sur" string="ชื่อ-นามสกุล"/>
+                        <field name="corporation" string="หน่วยงานหรือแผนกที่สังกัด"/>
+                        <field name="job_pos" string="ตำแหน่ง"/>
+                    </group>
+                </group>
+
+            <!-- กลุ่มลักษณะแผนงาน -->
+                <group string="ลักษณะแผนงาน">
+                    <group>
+                        <div class="o_row" style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <field name="box_impact" widget="boolean" />
+                            <span style="margin-left: 5px; white-space: nowrap; flex-grow: 1;">การลดผลกระทบด้านสิ่งแวดล้อม</span>
+                            <field name="box_resources" widget="boolean" />
+                            <span style="margin-left: 5px; white-space: nowrap; flex-grow: 1;">การใช้ทรัพยากรอย่างมีประสิทธิภาพ</span>
+                            <field name="box_change" widget="boolean" />
+                            <span style="margin-left: 5px; white-space: nowrap; flex-grow: 1;">การปรับเปลี่ยนและเปลี่ยนแปลงสภาพภูมิอากาศ</span>
+                            <field name="box_protection" widget="boolean" />
+                            <span style="margin-left: 5px; white-space: nowrap; flex-grow: 1;">การป้องกันและฟื้นฟูธรรมชาติ</span>
+                        </div>
+                    </group>
+                </group>
+
+            <!-- กลุ่มข้อมูลโครงการ -->
+                <group string="ข้อมูลโครงการ">
+                    <group>
+                        <field name="start_date" string="ระยะเวลาดำเนินการเริ่มต้น"/>
+                        <field name="end_date" string="ระยะเวลาดำเนินการสิ้นสุด"/>
+                    </group>
+                </group>
+
+            <!-- กลุ่มวัตถุประสงค์และเป้าหมาย -->
+                <group string="วัตถุประสงค์และเป้าหมาย">
+                    <group>
+                        <field name="purpose" string="วัตถุประสงค์"/>
+                        <field name="target" string="เป้าหมาย"/>
+                        <field name="metric" string="ตัวชี้วัด"/>
+                        <field name="budget" string="งบประมาณ"/>
+                    </group>
+                </group>
+
+                 <sheet>
+                    <notebook>
+                        <page string="ค่าดำเนินงาน">
+                            <field name="green_ids1">
+                                <tree editable = "top"  >
+                                    <field name="name"/>
+                                    <field name="b_operating"/>
+                                    <field name="a_operation"/>
+                                    <field name="total"/>
+                                    <field name="percen"/>
+                                    <field name="unit"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="ระยะเวลาคืนทุน">
+                            <field name="green_ids2">
+                                <tree editable = "top"  >
+<!--                                    &lt;!&ndash; ปุ่มสำหรับเรียกฟังก์ชัน update_and_clear_data &ndash;&gt;-->
+<!--                                    <button string="อัพเดตข้อมูล" type="object" name="update_and_clear_data" class="btn-primary"/>-->
+                                    <field name="name2"/>
+                                    <field name="budget1_1"/>
+                                    <field name="expenses2"/>
+                                    <field name="m_payback"/>
+                                    <field name="y_payback"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="การคำนวณก๊าซเรือนกระจก">
+                            <field name="green_ids3">
+                                <tree editable = "top"  >
+<!--                                    &lt;!&ndash; ปุ่มสำหรับเรียกฟังก์ชัน update_and_clear_data &ndash;&gt;-->
+<!--                                    <button string="อัพเดตข้อมูล" type="object" name="update_and_clear_data" class="btn-primary"/>-->
+                                    <field name="name3"/>
+                                    <field name="expenses3"/>
+                                    <field name="emission_factor"/>
+                                    <field name="dioxide"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_green_factory" model="ir.actions.act_window">
+        <field name="name">หัวข้อโครงงาน</field>
+        <field name="res_model">green.factory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_green_root" name="Project Plan"  sequence="0"/>
+    <menuitem id="menu_green_factory" name="แผนงานโครงงาน" parent="menu_green_root" action="action_green_factory" sequence="1"/>
+
+</odoo>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_green_assessment_tree" model="ir.ui.view">
+        <field name="name">green.assessment.tree</field>
+        <field name="model">green.assessment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="evaluation_of"/>
+                <field name="assessor"/>
+                <field name="location_work"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_form_green_assessment" model="ir.ui.view">
+        <field name="name">green.assessment.form</field>
+        <field name="model">green.assessment</field>
+        <field name="arch" type="xml">
+            <form string="green_assessment">
+            <!-- กลุ่มข้อมูลทั่วไป -->
+                <div t-attf-style="text-align: center; margin-top: 20px;"><h2 style="font-weight: bold;">การประเมินลักษณะปัญหาและผลกระทบสิ่งแวดล้อมขององค์กร</h2></div>
+                    <!-- กลุ่มฟิลด์ -->
+                    <div t-attf-style="display: flex; justify-content: center; margin-top: 20px;margin-bottom: 20px;">
+                        <group t-attf-style=" font-size: 60px;">
+                            <field name="date"/>
+                            <field name="department"/>
+                            <field name="location_work"/>
+                            <field name="evaluation_of"/>
+                            <field name="assessor"/>
+                            <field name="audit"/>
+                        </group>
+                    </div>
+                    <div>
+                        <style>
+                            h3 {
+                                font-weight: bold;
+                            }
+                            h3,h5 {
+                                text-align: left;
+                                margin-left: 200px;
+                                margin-right: auto;
+                                display: block;
+                                margin-bottom: 30px;
+                            }
+                        </style>
+                        <div>
+                            <h3>สถานการณ์</h3>
+                            <h5>N : Normal (สภาวะปกติ)</h5>
+                            <h5>A : Abnormal (สภาวะผิดปกติ)</h5>
+                            <h5>E : Emergency (สภาวะฉุกเฉิน)</h5>
+                        </div>
+                        <div>
+                            <h3>โอกาสที่จะเกิด (L : Likelihood)</h3>
+                            <h5>L1 : ความถี่ในการใช้ทรัพยากรหรือเกิดมลภาวะในกิจกรรม</h5>
+                            <h5>L2 : การควบคุมและตรวจสอบการใช้ทรัพยากรหรือเกิดมลภาวะ</h5>
+                        </div>
+                        <div>
+                            <h3>ด้านความรุนแรง (S : Severity)</h3>
+                            <h5>S1 : ระดับอันตรายต่อสิ่งแวดล้อม</h5>
+                            <h5>S2 : วงกว้างของผลกระทบ หรือข้อร้องเรียนต่อการใช้ทรัพยากรหรือการเกิดมลภาวะ</h5>
+                            <h5>S3 : กฎหมายและข้อบังคับ</h5>
+                        </div>
+                    </div>
+                    <div t-attf-style="text-align: center; margin-top: 10px;">
+                        <h4 style="font-weight: bold;">ระดับนัยสำคัญ = (โอกาสที่จะเกิด) × (ความรุนแรง) = (ความถี่ + การควบคุม) × (ระดับอันตราย + ระดับผลกระทบ + กฎหมาย) = (L1 + L2) × (S1 + S2 + S3) </h4>
+                        <p>กรณีมีคะแนนมากกว่า 42 คะแนน หรือ คะแนนด้านกฎหมายเท่ากับ 4 คะแนนขึ้นไป ให้ถือเป็นประเด็น ด้านสิ่งแวดล้อมที่มีนัยสำคัญ (Significant Aspect) และต้องจัดทำแผนการดำเนินงานเพื่อป้องกันและ/หรือแก้ไข ผลกระทบที่เกิดขึ้นจากการดำเนินกิจกรรมของสถานประการ สรุปประเด็นนัยสำคัญด้านสิ่งแวดล้อมขององค์กร</p>
+                    </div>
+                <sheet>
+                    <notebook>
+                        <page string="กิจกรรม/ ผลิตภัณฑ์/ บริการ">
+                            <field name="green_ass1">
+                                <tree editable = "top"  >
+                                    <field name="main1_ass"/>
+                                    <field name="main2_ass"/>
+                                    <field name="situation"/>
+                                    <field name="main3_ass"/>
+                                    <field name="cob_l1"/>
+                                    <field name="cob_l2"/>
+                                    <field name="violence_s1"/>
+                                    <field name="violence_s2"/>
+                                    <field name="violence_s3"/>
+                                    <field name="point"/>
+                                    <field name="importance"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+<record id="action_green_assessment" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="res_model">green.assessment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_green_assignment" name="Report" parent="menu_green_root" action="action_green_assessment" sequence="2"/>
+</odoo>
