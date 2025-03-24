@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_master_data_form" model="ir.ui.view">
+        <field name="name">master.data.form</field>
+        <field name="model">master.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="bank_no"/>
+                        <field name="name_bank1"/>
+                        <field name="account_no1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ตารางของ table เป็น tree and form-->
+    <record model="ir.ui.view" id="view_master_data">
+    <field name="name">master.data.list</field>
+    <field name="model">master.data</field>
+    <field name="arch" type="xml">
+        <tree string="List Bank">
+            <field name="bank_no"/>
+            <field name="name_bank1"/>
+            <field name="account_no1"/>
+        </tree>
+    </field>
+    </record>
+
+    <record id="action_master_data" model="ir.actions.act_window">
+        <field name="name">รายการ</field>
+        <field name="res_model">master.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_master_root" name="Payment" sequence="0"/>
+    <menuitem id="menu_master_data" name="รายการธนาคาร" parent="menu_master_root" action="action_master_data" sequence="0"/>
+</odoo>

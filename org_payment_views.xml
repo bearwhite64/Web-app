@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    การกำหนด kanban-->
+<record model="ir.ui.view" id="view_payment_data_kanban">
+    <field name="name">payment.data.kanban</field>
+    <field name="model">payment.data</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <strong><field name="name"/></strong>
+
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+
+<!--    <record model="ir.ui.view" id="view_payment_data_kanban">-->
+<!--    <field name="name">payment.data.kanban</field>-->
+<!--    <field name="model">payment.data</field>  &lt;!&ndash; แก้ไขจาก payment_data เป็น payment.data &ndash;&gt;-->
+<!--    <field name="arch" type="xml">-->
+<!--        <kanban>-->
+<!--            <templates>-->
+<!--                <t t-name="kanban-box">-->
+<!--                    <div class="oe_kanban_global_click">-->
+<!--                        <div class="oe_kanban_details">-->
+<!--                            <strong>ชื่อ<t t-esc="record.name.value"/></strong>-->
+<!--                            <ul>-->
+<!--                                <li>ธนาคาร<field name="bank"/></li>&ndash;&gt;-->
+<!--                                <li>ประเภทการจ่ายเงิน<field name="payment_type"/></li>-->
+<!--                                <li>รายละเอียด<field name="serial"/></li>-->
+<!--                                <li>จำนวนเงิน<field name="amount"/></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </templates>-->
+<!--        </kanban>-->
+<!--    </field>-->
+<!--</record>-->
+
+<!--    <record model="ir.ui.view" id="view_payment_data_kanban">-->
+<!--    <field name="name">payment.data.kanban</field>-->
+<!--    <field name="model">payment.data</field>-->
+<!--    <field name="arch" type="xml">-->
+<!--        <kanban>-->
+<!--            <templates>-->
+<!--                <t t-name="kanban-box">-->
+<!--                    <div class="oe_kanban_global_click">-->
+
+<!--                        <div class="oe_kanban_details">-->
+<!--                            <strong>ชื่อ: <field name="name"/></strong>-->
+<!--                            <ul>-->
+<!--                                <li>ธนาคาร: <field name="bank"/></li>-->
+<!--                                <li>ประเภทการจ่ายเงิน: <field name="payment_type"/></li>-->
+<!--                                <li>รายละเอียด: <field name="serial"/></li>-->
+<!--                                <li>จำนวนเงิน: <field name="amount"/></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </templates>-->
+<!--        </kanban>-->
+<!--    </field>-->
+<!--</record>-->
+
+<!--    การกำหนด From-->
+    <record id="view_payment_data_form" model="ir.ui.view">
+        <field name="name">payment.data.form</field>
+        <field name="model">payment.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="house_no"/>
+                            <field name="mas_in"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="ธุรกรรมรายรับ-รายจ่าย">
+                            <field name="line_in">
+                                <tree editable = "top">
+<!--                                    <field name="code"/>-->
+                                    <field name="payment_type"/>
+<!--                                    <field name="code1"/>-->
+                                    <field name="code1"/>
+<!--                                    <field name="description"/>-->
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ตารางของ table เป็น tree and form-->
+    <record model="ir.ui.view" id="view_payment_data">
+    <field name="name">payment.data.list</field>
+    <field name="model">payment.data</field>
+    <field name="arch" type="xml">
+        <tree string="Payment">
+            <field name="name"/>
+            <field name="house_no"/>
+            <field name="mas_in"/>
+        </tree>
+    </field>
+    </record>
+
+
+    <record id="action_payment_data" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="res_model">payment.data</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+<!--    <menuitem id="menu_payment_root" name="payment" sequence="2"/>-->
+    <menuitem id="menu_payment_data" name="ธุรกรรมนิติบุคคล" parent="menu_master_root" action="action_payment_data" sequence="2"/>
+</odoo>

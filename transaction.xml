@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_code_p_form" model="ir.ui.view">
+        <field name="name">code.p.form</field>
+        <field name="model">code.p</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="code_pay"/>
+                        <field name="code_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ตารางของ table เป็น tree and form-->
+    <record model="ir.ui.view" id="view_code_p">
+    <field name="name">code.p.list</field>
+    <field name="model">code.p</field>
+    <field name="arch" type="xml">
+        <tree string="List pay">
+            <field name="code_pay"/>
+            <field name="code_name"/>
+        </tree>
+    </field>
+    </record>
+
+
+    <record id="action_code_p" model="ir.actions.act_window">
+        <field name="name">รายการ</field>
+        <field name="res_model">code.p</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    <menuitem id="menu_code_p_root" name="Payment" sequence="1"/>-->
+    <menuitem id="menu_code_p" name="รายการธุรกรรม" parent="menu_master_root" action="action_code_p" sequence="1"/>
+</odoo>
